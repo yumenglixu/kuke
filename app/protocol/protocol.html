@@ -1,0 +1,30 @@
+<div id="wrapper" class="app-container">   
+    <!--左侧-->
+    <nav-bar></nav-bar>
+    <!--头部-->
+    <kk-header id="kk-header"></kk-header>
+
+    <!--主要内容-->
+    <div class="index-wrapper">
+    	<div class="row">
+			<div class="col-md-12 ">
+				<div class="protocol-main">
+					<ul class="nav-tabs clearfix">
+						<li ng-repeat="(index, tab) in proTabs" ng-class = "{active:(proIndex == index)}" ng-click="changeTab(index)">
+						    {{tab}}
+						</li>
+					</ul>
+					<div class="protocol-con box-shadow ">
+						<protocol-panle1 ng-if="proIndex == 0"></protocol-panle1>
+						<protocol-panle2 ng-if="proIndex == 1"></protocol-panle2>
+						<protocol-panle3 ng-if="proIndex == 2"></protocol-panle3>
+						<protocol-panle4 ng-if="proIndex == 3"></protocol-panle4>
+						<protocol-panle5 ng-if="proIndex == 4"></protocol-panle5>
+						<protocol-panle6 ng-if="proIndex == 5"></protocol-panle6>
+
+					</div>
+				</div>
+			</div>
+		</div>
+    </div>
+</div>

@@ -1,0 +1,69 @@
+<!--头部-->
+<div class="row">
+	<div class="col-md-12 row-rab">
+		<ul class="nav-tabs">
+			<li ng-repeat="(index, tab) in tabs" ng-class = "{active:(financeIndex == index)}" ng-click="changeTab(tab.type, index)">
+			    {{tab.label}}
+			</li>
+		 </ul>
+	</div>
+</div>
+<div class="row clearfix" style="margin-top: 7px;">
+	<section ng-show="financeIndex == 0">
+		<div class="col-md-3">
+			<div class="order-info box-shadow pr order-info-0">
+				<div class="order-left">
+					<i class="icon"></i>
+				</div>
+				<div class="price">
+					<h4>收入金额</h4>
+					<span class="price-num" style="color: #efb350;"><b>100000</b> 元</span>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="order-info box-shadow pr order-info-2">
+				<div class="order-left">
+					<i class="icon"></i>
+				</div>
+				<div class="price">
+					<h4>
+						可提现金额
+						<i class="icon icon-question" data-toggle="tooltip" data-placement="top" title="在订单交易成功的30个工作日之后，方可提现"></i>
+					</h4>
+					<span class="price-num"><b>3000</b> 元</span>
+				</div>
+				<a href="#" class="apply-price pa">申请提现</a>
+			</div>
+		</div>
+	</section>
+	<section ng-show="financeIndex == 1">
+		<div class="col-md-3">
+			<div class="order-info box-shadow pr order-info-2">
+				<div class="order-left">
+					<i class="icon"></i>
+				</div>
+				<div class="price">
+					<h4>
+						保证金
+						<i class="icon icon-question" data-toggle="tooltip" data-placement="top" title="每个月第一天检测保证金，保证金不足时，自动从收入金额中转入保证金。"></i>
+					</h4>
+					<span class="price-num"><b>3000</b> 元</span>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
+<div class="tab-pane tab-pane-table file-list-view finance-list-view">
+	<div class="list-view-header">
+		<span class="cell">日期</span>
+		<span class="cell">名称</span>
+		<span class="cell">金额</span>
+	</div>
+	<div class="list-view-header" ng-repeat="(index, item) in list">
+		<span class="cell">{{item.time}}</span>
+		<span class="cell">{{item.reason}}</span>
+		<span class="cell">{{item.price}}</span>
+	</div>
+	<kk-pagination conf="paginationConf"></kk-pagination>
+</div>

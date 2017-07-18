@@ -1,0 +1,12 @@
+{
+  	"errno": 0,
+  	"errmsg": "ok",
+  	"data": {
+  		"mallName": "北京酷传科技有限公司",
+  		"mallTips": "加入酷传ASO平台，快速寻找千万用户！",
+  		"orderNum": "10000",
+  		"incomeAmount": "100",
+  		"reflectAmount": "3000",
+  		"unitPrice": "30"
+  	}
+}

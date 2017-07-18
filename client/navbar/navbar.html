@@ -1,0 +1,26 @@
+<div class="sidebar-wrapper">
+    <div class="navbar">
+        <a class="navbar-brand" href="#"></a>
+    </div>
+    <ul class="nav-sidebar">
+        <li ng-repeat="server in servers" ng-class = "{active: (server.name == activeSer)}">
+            <a ng-href="#{{server.name}}" title="{{server.title}}">
+                <i class="icon {{server.icon}}"></i>
+                <span>{{server.title}}</span>
+            </a>
+        </li>
+    </ul>
+    <ul class="nav-sidebar nav-protocol">
+        <li class="" ng-class = "{active: (activeSer == '/protocol')}">
+            <a title="概述" href="#/protocol">
+                <i class="icon icon-protocol"></i>
+                <span>协议中心</span>
+            </a>
+        </li>
+    </ul>
+    <div class="collapse-nav">
+        <a class="toggle-nav-collapse" href="javascript:;">
+            <i class="icon icon-arrow"></i>
+        </a>
+    </div>
+</div>

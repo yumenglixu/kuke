@@ -1,1 +1,82 @@
-1111
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>渠道管理平台-KUKE</title>
+	<base href="/">
+	<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/common.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/index.css">
+
+	<!--switch-->
+	<link rel="stylesheet" type="text/css" href="assets/js/switchery/switchery.css">
+</head>
+<body ng-app="kukeApp">
+	<div ui-view style="height: 100%;"></div> 
+	
+
+	<!--JS-->
+	<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+	<script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+
+	<!--angular-->
+	<script type="text/javascript" src="assets/js/angular/angular.js"></script>
+	<script type="text/javascript" src="assets/js/angular/angular-ui-router.js"></script>
+	<script type="text/javascript" src="assets/js/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+	<script type="text/javascript" src="app/kuke.js"></script>
+	<!--angular end-->
+	
+	<!--引入文件-->
+	<script type="text/javascript" src="app/kk/kk.js"></script>
+	<script type="text/javascript" src="app/order/order.js"></script>
+	<script type="text/javascript" src="app/orderInfo/orderInfo.js"></script>
+	<script type="text/javascript" src="app/finance/finance.js"></script>
+	<script type="text/javascript" src="app/protocol/protocol.js"></script>
+	
+	<!--directive 文件-->
+	<script type="text/javascript" src="client/kk/kk.directive.js"></script>
+	<script type="text/javascript" src="client/orderPanle/orderPanle.directive.js"></script>
+	<script type="text/javascript" src="client/navbar/navbar.directive.js"></script>
+	<script type="text/javascript" src="client/kkHeader/kkHeader.directive.js"></script>
+	<script type="text/javascript" src="client/projectPanle/projectPanle.directive.js"></script>
+	<script type="text/javascript" src="client/orderInfoPanle/orderInfoPanle.directive.js"></script>
+	<script type="text/javascript" src="client/financePanle/financePanle.directive.js"></script>
+	
+	<script type="text/javascript" src="client/protocol/protocol1/protocol1.directive.js"></script>
+	<script type="text/javascript" src="client/protocol/protocol2/protocol2.directive.js"></script>
+	<script type="text/javascript" src="client/protocol/protocol3/protocol3.directive.js"></script>
+	<script type="text/javascript" src="client/protocol/protocol4/protocol4.directive.js"></script>
+	<script type="text/javascript" src="client/protocol/protocol5/protocol5.directive.js"></script>
+	<script type="text/javascript" src="client/protocol/protocol6/protocol6.directive.js"></script>
+	
+	<!--service-->
+	<script type="text/javascript" src="/app/service/http.service.js"></script>
+	<script type="text/javascript" src="/app/service/home.service.js"></script>
+	<script type="text/javascript" src="/app/service/order.service.js"></script>
+	<script type="text/javascript" src="/app/service/finance.service.js"></script>
+
+	
+	<script type="text/javascript" src="app/page/pagination.js"></script>
+	<script type="text/javascript" src="assets/js/switchery/switchery.js"></script>
+
+	
+	
+
+	<script type="text/javascript">
+		var app = $('.app-container');
+		var toogle = $('.toggle-nav-collapse');
+		var sidebar = $('.sidebar-wrapper');
+		$(document).ready(function () {
+			toogle.on('click', function () {
+				app.toggleClass('app-container-collapsed');
+				sidebar.toggleClass('sidebar-wrapper-collapsed');
+			});
+
+			var elem = document.querySelector('.js-switch');
+            var switchery = new Switchery(elem, { color: '#218dfd' });
+
+            $('[data-toggle="tooltip"]').tooltip();
+		})
+	</script>
+</body>
+</html>
