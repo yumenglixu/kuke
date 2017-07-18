@@ -12,10 +12,10 @@ angular.module('kukeApp')
 		return {
 			// 获取对应的项目数据
 			getOrderList: function(data, async, callback){
-				kukeHttp('mock/order/order.json', data , 'GET', async, callback);
+				kukeHttp('./mock/order/order.json', data , 'GET', async, callback);
 			},
 			getOrderInfo: function(data, async, callback){
-				kukeHttp('mock/order/orderinfo.json', data , 'GET', async, callback);
+				kukeHttp('./mock/order/orderinfo.json', data , 'GET', async, callback);
 			}
 		};
 	}]);

@@ -12,7 +12,7 @@ angular.module('kukeApp')
 		return {
 			// 获取对应的项目数据
 			getFinanceList: function(data, async, callback){
-				kukeHttp('mock/fina/list.json', data , 'POST', async, callback);
+				kukeHttp('./mock/fina/list.json', data , 'POST', async, callback);
 			}
 		};
 	}]);

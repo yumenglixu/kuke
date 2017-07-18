@@ -12,7 +12,7 @@ angular.module('kukeApp')
 		return {
 			// 获取对应的项目数据
 			getBaseInfo: function(data, async, callback){
-				kukeHttp('mock/home/baseinfo.json', data , 'POST', async, callback);
+				kukeHttp('./mock/home/baseinfo.json', data , 'POST', async, callback);
 			}
 		};
 	}]);
