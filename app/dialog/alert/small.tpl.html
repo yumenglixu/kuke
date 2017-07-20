@@ -1,0 +1,12 @@
+<div class="inmodal">
+    <div class="modal-header">
+        <h4 class="modal-title text-danger">注意！</h4>
+    </div>
+    <div class="modal-body">
+        <p><strong>{{ msg }}</strong></p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-white" ng-click="cancel()" ng-if="isConfirm">取消</button>
+        <button type="button" class="btn btn-danger" ng-click="ok()">确定</button>
+    </div>
+</div>

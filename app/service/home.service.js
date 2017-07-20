@@ -10,9 +10,14 @@
 angular.module('kukeApp')
 	.factory('HomeApiFactory', ['kukeHttp', function (ybHttp) {
 		return {
-			// 获取对应的项目数据
+			// 获取商家基础信息信息
 			getBaseInfo: function(data, async, callback){
-				kukeHttp('/kuke/mock/home/baseinfo.json', data , 'GET', async, callback);
+				kukeHttp('/businessInfo', data , 'GET', async, callback);
+			},
+
+			// 修改基本信息
+			getUpdateInfo: function(data, async, callback){
+				kukeHttp('/chgBusiness', data , 'GET', async, callback);
 			}
 		};
 	}]);

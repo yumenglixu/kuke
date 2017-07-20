@@ -22,12 +22,79 @@
 .kuke-info h4 {
 	color: #666;
 }
+
+.edit .input {
+	width: 40%;
+	height: 34px;
+	max-width: 700px;
+	display: inline-block;
+	padding: 5px 15px;
+	border-radius: 4px;
+	background-color: #f4f3f5;
+}
+.edit input {
+	height: 24px;
+	line-height: 24px;
+	font-size: 14px;
+	color: #333;
+	border: none;
+    background-color: inherit;
+    width: 100%;
+}
+.edit  span {
+	height: 34px;
+	line-height: 34px;
+	width: 60px;
+	text-align: center;
+	font-size: 14px;
+	color: #999;
+	display: inline-block;
+	cursor: pointer;
+	vertical-align: middle;
+}
 .kuke-info .make-switch {
 	position: absolute;
 	right: 22px;
 	top: 35px;
 }
-
+.switchery {
+	background-color: #e5eaef;
+    border-radius: 14px;
+    cursor: pointer;
+    display: inline-block;
+    height: 26px;
+    position: relative;
+    vertical-align: middle;
+    width: 56px;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    padding-right: 1px;
+    box-shadow: rgb(223, 223, 223) 0px 0px 0px 0px inset;
+    border-color: rgb(223, 223, 223);
+    transition: border 0.4s, box-shadow 0.4s;
+}
+.switchery small {
+    background: #fff;
+    border-radius: 100%;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+    height: 24px;
+    width: 24px;
+    position: absolute;
+    top: 1px;
+    transition: left .2s;
+    left: 0;
+}
+.switchery.active {
+	box-shadow: rgb(33, 141, 253) 0px 0px 0px 16px inset;
+    border-color: rgb(33, 141, 253);
+    transition: border 0.4s, box-shadow 0.4s, background-color 1.2s;
+    background-color: rgb(33, 141, 253);
+}
+.switchery.active small {
+	left: 32px;
+    transition: left .2s;
+}
 /*order-info*/
 .order-info {
 	padding-left: 28%;
@@ -42,7 +109,10 @@
 	top: 20px;
 	text-align: center;
 	border-right: 1px solid #ebe9ee;
+	left: 0px;
+    transition: left 0.2s;
 }
+
 .order-info .icon {
 	width: 33px;
 	height: 33px;
@@ -108,7 +178,6 @@
 	color: #9574f2;
 }
 .order-info .tooltip-inner {
-	background-color: rgba(54, 44, 86, .8);
 	max-width: 400px;
 	min-width: 310px;
 	padding: 10px 12px;
@@ -116,7 +185,10 @@
 	font-weight: lighter;
 	font-family: "Microsoft YaHei", "Helvetica Neue For Number", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB",  "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
-.order-info .tooltip.top .tooltip-arrow {
+.tooltip-inner {
+	background-color: rgba(54, 44, 86, .8);
+}
+.tooltip.top .tooltip-arrow {
 	border-top-color: rgba(54, 44, 86, .8);
 }
 .order-info .apply-price {
@@ -135,6 +207,10 @@
 	color: #362c56;
 	font-size: 18px;
 	padding-left: 15px;
+	display: none;
+}
+.home .order-list .title {
+	display: block;
 }
 .order-list-item {
 	padding: 20px  130px 20px 105px; 
@@ -500,7 +576,7 @@
 	border-color: #218dfd;
 }
 /*has-no-order*/
-.has-no-order .modal-content{
+.modal-content{
 	-webkit-box-shadow: none;
 			box-shadow: none;
 	border: none;

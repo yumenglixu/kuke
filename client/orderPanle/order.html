@@ -2,48 +2,10 @@
 <div class="row">
 	<div class="col-md-12 row-rab">
 		<ul class="nav-tabs">
-			<li ng-repeat="(index, tab) in tabs" ng-class = "{active:(tabIndex == index)}" ng-click="changeTab(tab.type, index)">
+			<li ng-repeat="(index, tab) in tabs" ng-class = "{active:(tabIndex == tab.type)}" ng-click="changeTab(tab.type)">
 			    {{tab.label}}
 			</li>
 		 </ul>
 	</div>
 </div>
-<div class="row clearfix order-list">
-	<div class="col-md-12" ng-repeat="(index, order) in orders">
-		<div class="order-list-item box-shadow">
-			<div class="img">
-				<img src="assets/image/img.jpg" alt="placeholder+image">
-			</div>
-			<div class="info">
-				<a class="text-1 info-title" ng-href="#/order/{{order.id}}/info" ui-sref-active="active">
-					{{order.index}} {{order.title}}
-				</a>
-				<ul class="info-item">
-					<li ng-repeat="(index, tag) in order.tags">
-						<span class="info-item-title">{{tag.label}}</span>
-						<span class="info-item-con">{{tag.value}}</span>
-					</li>
-				</ul>
-			</div>
-			<!--status 0 确定接单， 1 开始执行 2 上传IDFA -1 交易的结果-->
-			<!--result 0 失败， 1 成功 2 关闭-->
-			<div class="button" ng-if="order.status == 1">
-				<button type="button" class="btn btn-primary">确定接单</button>
-				<a  class="link" data-toggle="modal" data-target="#myModal">无法接单？</a>
-			</div>
-			<div class="button" ng-if="order.status == 2">
-				<button type="button" class="btn btn-success">开始执行</button>
-			</div>
-			<div class="button" ng-if="order.status == 3">
-				<button type="button" class="btn btn-warning">上传IDFA</button>
-				<a href="#" class="link">下载模板</a>
-			</div>
-			<div class="button" ng-if="order.status == -1">
-				<label class="result fail" ng-if="order.result == 0">交易失败</label>
-				<span class="reback" ng-if="order.result == 0">(退款 {{order.reback}}元)</span>
-				<label class="result success" ng-if="order.result == 1">交易成功</label>
-				<label class="result" ng-if="order.result == 2">交易关闭</label>
-			</div>
-		</div>
-	</div>
-</div>
+<order-list></order-list>

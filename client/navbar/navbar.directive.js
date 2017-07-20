@@ -20,7 +20,8 @@ angular.module('kukeApp').directive('navBar',['$location', function($location){
 			}];
 			
 			var path = '/' + $location.path().split('/')[1];
-			scope.activeSer = path;
+			scope.activeSer = $location.path();
+			scope.path = path;
 		},
 		controller:function($scope){
 			var app = $('.app-container');

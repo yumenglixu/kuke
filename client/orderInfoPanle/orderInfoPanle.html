@@ -1,42 +1,6 @@
 <!--list-->
 <div class="row clearfix order-list">
-	<div class="col-md-12" ng-repeat="(index, order) in orders">
-		<div class="order-list-item box-shadow">
-			<div class="img">
-				<img src="assets/image/img.jpg" alt="placeholder+image">
-			</div>
-			<div class="info">
-				<a class="text-1 info-title" ng-href="#/order/{{order.id}}/info" ui-sref-active="active">
-					{{order.index}} {{order.title}}
-				</a>
-				<ul class="info-item">
-					<li ng-repeat="(index, tag) in order.tags">
-						<span class="info-item-title">{{tag.label}}</span>
-						<span class="info-item-con">{{tag.value}}</span>
-					</li>
-				</ul>
-			</div>
-			<!--status 0 确定接单， 1 开始执行 2 上传IDFA -1 交易的结果-->
-			<!--result 0 失败， 1 成功 2 关闭-->
-			<div class="button" ng-if="order.status == 1">
-				<button type="button" class="btn btn-primary">确定接单</button>
-				<a  class="link" data-toggle="modal" data-target="#myModal">无法接单？</a>
-			</div>
-			<div class="button" ng-if="order.status == 2">
-				<button type="button" class="btn btn-success">开始执行</button>
-			</div>
-			<div class="button" ng-if="order.status == 3">
-				<button type="button" class="btn btn-warning">上传IDFA</button>
-				<a href="#" class="link">下载模板</a>
-			</div>
-			<div class="button" ng-if="order.status == -1">
-				<label class="result fail" ng-if="order.result == 0">交易失败</label>
-				<span class="reback" ng-if="order.result == 0">(退款 {{order.reback}}元)</span>
-				<label class="result success" ng-if="order.result == 1">交易成功</label>
-				<label class="result" ng-if="order.result == 2">交易关闭</label>
-			</div>
-		</div>
-	</div>
+	<order-list></order-list>
 </div>
 
 <!--切换-->
@@ -53,71 +17,31 @@
 		<div class="tab-content clearfix box-shadow">
 		    <div class="tab-pane" ng-class = "{active:(orderIndex == '0')}">
 		    	<ul class="timeline">
-		    		<li class="tl-item">
-		    			<div class="tl-wrap b-info">
+		    		<li class="tl-item" ng-repeat="(index, item) in info.orderLog">
+		    			<div class="tl-wrap" ng-class="{'b-info':(item.order_status == 5), 'b-danger': (item.order_status == 7 || item.order_status == -1)}">
 		    				<div class="tl-content">
-				              	<p class="result-item">交易成功</p>
-				              	<p class="result-time">2017-01-01 19:21:00</p>
-				            </div>
-		    			</div>
-		    		</li>
-		    		<li class="tl-item">
-		    			<div class="tl-wrap b-danger">
-		    				<div class="tl-content">
-				              	<p class="result-item">交易失败 <span>已退款</span></p>
-				              	<p class="result-time">2017-01-01 19:21:00</p>
-				            </div>
-		    			</div>
-		    		</li>
-		    		<li class="tl-item">
-		    			<div class="tl-wrap">
-		    				<div class="tl-content">
-				              	<p class="result-item">成功上传IDFA</p>
-				              	<p class="result-time">2017-01-01 19:21:00</p>
-				            </div>
-		    			</div>
-		    		</li>
-		    		<li class="tl-item">
-		    			<div class="tl-wrap">
-		    				<div class="tl-content">
-				              	<p class="result-item">开始执行订单</p>
-				              	<p class="result-time">2017-01-01 19:21:00</p>
-				            </div>
-		    			</div>
-		    		</li>
-		    		<li class="tl-item">
-		    			<div class="tl-wrap">
-		    				<div class="tl-content">
-				              	<p class="result-item">渠道接单</p>
-				              	<p class="result-time">2017-01-01 19:21:00</p>
-				            </div>
-		    			</div>
-		    		</li>
-		    		<li class="tl-item last">
-		    			<div class="tl-wrap">
-		    				<div class="tl-content">
-				              	<p class="result-item">订单提交到后台</p>
-				              	<p class="result-time">2017-01-01 19:21:00</p>
+				              	<p class="result-item">{{item.name}} <span ng-if="item.order_status == 7 || item.order_status == -1">{{item.remark}}</span></p>
+				              	<p class="result-time">{{item.create_time | timeFormatter}}</p>
 				            </div>
 		    			</div>
 		    		</li>
 		    	</ul>
 		    </div>
-		    <div class="tab-pane tab-pane-table file-list-view" ng-class = "{active:(orderIndex == '1'), 'machine-brush': (type !=='normal')}">
+		    <div class="tab-pane tab-pane-table file-list-view" ng-class = "{active:(orderIndex == '1'), 'machine-brush': (status == 1)}">
 		    	<div class="list-view-header">
 		    		<span class="cell cell-id"></span>
 		    		<span class="cell">关键词</span>
 		    		<span class="cell">热度</span>
 		    		<span class="cell">当前排名</span>
-		    		<span class="cell" ng-if="type==='normal'">购买量</span>
+		    		<span class="cell" ng-if="status == 0">购买量</span>
 		    	</div>
 
-		    	<div class="list-view-header" ng-repeat="(index, rank) in ranks">
+		    	<div class="list-view-header" ng-repeat="(index, rank) in info.orderDetail">
 		    		<span class="cell cell-id">{{index + 1}}</span>
 		    		<span class="cell">{{rank.keyword}}</span>
-		    		<span class="cell">{{rank.hot}}</span>
-		    		<span class="cell">{{rank.num}}</span>
-		    		<span class="cell" ng-if="type==='normal'">{{rank.buy}}</span>
+		    		<span class="cell">{{rank.init_hot}}</span>
+		    		<span class="cell">{{rank.init_rank}}</span>
+		    		<span class="cell" ng-if="status == 0">{{rank.buy_download}}</span>
 		    	</div>
 		    </div>
 		 </div>

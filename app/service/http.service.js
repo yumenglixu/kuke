@@ -6,7 +6,8 @@
  */
 
 angular.module('kukeApp').service('kukeHttp', function ($http) {
-   	var ip = window.location.origin;
+   	// var ip = window.location.origin;
+   	var ip = 'http://shangjia.kuchuan.com';
     kukeHttp = function (action, data, type, async, callback){
     	var url = ip + action;
 	    $.ajax({

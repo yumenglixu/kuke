@@ -3,10 +3,23 @@
     <div class="row clearfix">
         <div class="col-md-12">
             <div class="kuke-info box-shadow pr">
-                <h3>{{baseInfo.mallName}}</h3>
-                <h4>{{baseInfo.mallTips}}<i class="icon icon-edit"></i></h4>
+                <h3>{{baseInfo.name}}</h3>
+                <h4 ng-show="!edit.descFlag">
+                    {{baseInfo.desc}}
+                    <i class="icon icon-edit" data-toggle="tooltip" data-placement="top" title="编辑" ng-click="editClick()"></i>
+                </h4>
+                <div class="edit" ng-show="edit.descFlag">
+                    <div class="input">
+                        <input type="text" name="desc" ng-model="edit.descText" required ng-trim="false">
+                    </div>
+                    <span style="color: #218dfd;"  ng-click="editClick(1)">确定</span>
+                    <span ng-click="editClick()">取消</span>
+                </div>
+
                 <div class="make-switch">
-                    <input type="checkbox" class="js-switch" checked />
+                    <span class="switchery" ng-class = "{active: baseInfo.status}" ng-click="editStatus()">
+                        <small></small>
+                    </span>
                 </div>
             </div>
         </div>
@@ -19,7 +32,7 @@
                 </div>
                 <div class="price">
                     <h4>订单数量</h4>
-                    <span class="price-num"><b>{{baseInfo.orderNum}}</b> 个</span>
+                    <span class="price-num"><b>{{baseInfo.order_num}}</b> 个</span>
                 </div>
             </div>
         </div>
@@ -30,7 +43,7 @@
                 </div>
                 <div class="price">
                     <h4>收入金额</h4>
-                    <span class="price-num"><b>{{baseInfo.incomeAmount}}</b> 个</span>
+                    <span class="price-num"><b>{{baseInfo.income_money}}</b> 元</span>
                 </div>
             </div>
         </div>
@@ -44,9 +57,9 @@
                         可提现金额
                         <i class="icon icon-question" data-toggle="tooltip" data-placement="top" title="在订单交易成功的30个工作日之后，方可提现"></i>
                     </h4>
-                    <span class="price-num"><b>{{baseInfo.reflectAmount}}</b> 元</span>
+                    <span class="price-num"><b>{{baseInfo.withdraw_money}}</b> 元</span>
                 </div>
-                <a href="#" class="apply-price pa">申请提现</a>
+                <a href="tencent://message/?uin=2369390744&Site=&Menu=yes" class="apply-price pa">申请提现</a>
             </div>
         </div>
         <div class="col-md-3">
@@ -56,248 +69,21 @@
                 </div>
                 <div class="price">
                     <h4>设置单价</h4>
-                    <span class="price-num"><b>{{baseInfo.unitPrice}}</b> 元</span>
-                    <i class="icon icon-edit"></i>
+                    <span class="price-num" ng-show="!edit.priceFlag"><b>{{baseInfo.price}}</b> 元</span>
+                    <i class="icon icon-edit" ng-show="!edit.priceFlag" title="编辑" ng-click="editPrice()"></i>
+                    <div class="edit" ng-show="edit.priceFlag">
+                        <div class="input">
+                            <input type="text" name="" ng-model="edit.priceText">
+                        </div>
+                        <span style="color: #218dfd;" ng-click="editPrice(true)">确定</span>
+                        <span ng-click="editPrice()">取消</span>
+                    </div>
+                    
                 </div>
             </div>
         </div>
     </div>
-    <div class="row clearfix order-list">
-        <h3 class="title">您有未完成的订单，请及时处理！</h3>
-        <div class="col-md-12">
-            <div class="order-list-item box-shadow">
-                <div class="img">
-                    <img src="assets/image/img.jpg" alt="placeholder+image">
-                </div>
-                <div class="info">
-                    <h1 class="text-1 info-title">
-                        1. 爱钱进(福利版)-安全的银行存管p2p金融投资平台爱钱进(福利
-                    </h1>
-                    <ul class="info-item">
-                        <li>
-                            <span class="info-item-title">APP ID</span>
-                            <span class="info-item-con">1121594093</span>
-                        </li>
-                        <li>
-                            <span class="info-item-title">关键词</span>
-                            <span class="info-item-con">23个</span>
-                        </li>
-                        <li>
-                            <span class="info-item-title">目前排名</span>
-                            <span class="info-item-con">TOP 3</span>
-                        </li>
-                        <li>
-                            <span class="info-item-title">上榜率</span>
-                            <span class="info-item-con">70%</span>
-                        </li>
-                        <li>
-                            <span class="info-item-title">开始执行时间</span>
-                            <span class="info-item-con">2017-01-01 09：00</span>
-                        </li>
-                        <li>
-                            <span class="info-item-title">结束时间</span>
-                            <span class="info-item-con">2017-01-01 09：00</span>
-                        </li>
-                        <li>
-                            <span class="info-item-title">金额</span>
-                            <span class="info-item-con">￥234895</span>
-                        </li>
-                    </ul>
-                </div>
-                <div class="button">
-                    <button type="button" class="btn btn-primary">确定接单</button>
-                    <a  class="link" data-toggle="modal" data-target="#myModal">无法接单？</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-12">
-            <div class="order-list-item box-shadow">
-                <div class="img">
-                    <img src="assets/image/img.jpg" alt="placeholder+image">
-                </div>
-                <div class="info">
-                    <h1 class="text-1 info-title">
-                        1. 爱钱进(福利版)-安全的银行存管p2p金融投资平台爱钱进(福利版)-安全的银行存管p2p金融投资平台爱钱进(福利版)-安全的银行存管p2p金融投资平台爱钱进(福利版)-安全的银行存管p2p金融投资平台
-                    </h1>
-                    <ul class="info-item">
-                        <li>
-                            <span class="info-item-title">APP ID</span>
-                            <span class="info-item-con">1121594093</span>
-                        </li>
-                        <li>
-                            <span class="info-item-title">关键词</span>
-                            <span class="info-item-con">23个</span>
-                        </li>
-                        <li>
-                            <span class="info-item-title">目前排名</span>
-                            <span class="info-item-con">TOP 3</span>
-                        </li>
-                        <li>
-                            <span class="info-item-title">开始执行时间</span>
-                            <span class="info-item-con">2017-01-01 09：00</span>
-                        </li>
-                        <li>
-                            <span class="info-item-title">金额</span>
-                            <span class="info-item-con">￥234895</span>
-                        </li>
-                    </ul>
-                </div>
-                <div class="button">
-                    <button type="button" class="btn btn-primary">确定接单</button>
-                    <a href="#" class="link">无法接单？</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-12">
-            <div class="order-list-item box-shadow">
-                <div class="img">
-                    <img src="assets/image/img.jpg" alt="placeholder+image">
-                </div>
-                <div class="info">
-                    <h1 class="text-1 info-title">
-                        1. 爱钱进(福利版)-安全的银行存管p2p金融投资平台爱钱进(福利版)-安全的银行存管p2p金融投资平台爱钱进(福利版)-安全的银行存管p2p金融投资平台爱钱进(福利版)-安全的银行存管p2p金融投资平台
-                    </h1>
-                    <ul class="info-item">
-                        <li>
-                            <span class="info-item-title">APP ID</span>
-                            <span class="info-item-con">1121594093</span>
-                        </li>
-                        <li>
-                            <span class="info-item-title">关键词</span>
-                            <span class="info-item-con">23个</span>
-                        </li>
-                        <li>
-                            <span class="info-item-title">目前排名</span>
-                            <span class="info-item-con">TOP 3</span>
-                        </li>
-                        <li>
-                            <span class="info-item-title">开始执行时间</span>
-                            <span class="info-item-con">2017-01-01 09：00</span>
-                        </li>
-                        <li>
-                            <span class="info-item-title">金额</span>
-                            <span class="info-item-con">￥234895</span>
-                        </li>
-                    </ul>
-                </div>
-                <div class="button">
-                    <button type="button" class="btn btn-success">开始执行</button>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-12">
-            <div class="order-list-item box-shadow">
-                <div class="img">
-                    <img src="assets/image/img.jpg" alt="placeholder+image">
-                </div>
-                <div class="info">
-                    <h1 class="text-1 info-title">
-                        1. 爱钱进(福利版)-安全的银行存管p2p金融投资平台爱钱进(福利版)-安全的银行存管p2p金融投资平台爱钱进(福利版)-安全的银行存管p2p金融投资平台爱钱进(福利版)-安全的银行存管p2p金融投资平台
-                    </h1>
-                    <ul class="info-item">
-                        <li>
-                            <span class="info-item-title">APP ID</span>
-                            <span class="info-item-con">1121594093</span>
-                        </li>
-                        <li>
-                            <span class="info-item-title">关键词</span>
-                            <span class="info-item-con">23个</span>
-                        </li>
-                        <li>
-                            <span class="info-item-title">目前排名</span>
-                            <span class="info-item-con">TOP 3</span>
-                        </li>
-                        <li>
-                            <span class="info-item-title">开始执行时间</span>
-                            <span class="info-item-con">2017-01-01 09：00</span>
-                        </li>
-                        <li>
-                            <span class="info-item-title">金额</span>
-                            <span class="info-item-con">￥234895</span>
-                        </li>
-                    </ul>
-                </div>
-                <div class="button">
-                    <button type="button" class="btn btn-primary">确定接单</button>
-                    <a href="#" class="link">无法接单？</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-12">
-            <div class="order-list-item box-shadow">
-                <div class="img">
-                    <img src="assets/image/img.jpg" alt="placeholder+image">
-                </div>
-                <div class="info">
-                    <h1 class="text-1 info-title">
-                        1. 爱钱进(福利版)-安全的银行存管p2p金融投资平台爱钱进(福利版)-安全的银行存管p2p金融投资平台爱钱进(福利版)-安全的银行存管p2p金融投资平台爱钱进(福利版)-安全的银行存管p2p金融投资平台
-                    </h1>
-                    <ul class="info-item">
-                        <li>
-                            <span class="info-item-title">APP ID</span>
-                            <span class="info-item-con">1121594093</span>
-                        </li>
-                        <li>
-                            <span class="info-item-title">关键词</span>
-                            <span class="info-item-con">23个</span>
-                        </li>
-                        <li>
-                            <span class="info-item-title">目前排名</span>
-                            <span class="info-item-con">TOP 3</span>
-                        </li>
-                        <li>
-                            <span class="info-item-title">开始执行时间</span>
-                            <span class="info-item-con">2017-01-01 09：00</span>
-                        </li>
-                        <li>
-                            <span class="info-item-title">金额</span>
-                            <span class="info-item-con">￥234895</span>
-                        </li>
-                    </ul>
-                </div>
-                <div class="button">
-                    <button type="button" class="btn btn-primary">确定接单</button>
-                    <a href="#" class="link">无法接单？</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-12">
-            <div class="order-list-item box-shadow">
-                <div class="img">
-                    <img src="assets/image/img.jpg" alt="placeholder+image">
-                </div>
-                <div class="info">
-                    <h1 class="text-1 info-title">
-                        1. 爱钱进(福利版)-安全的银行存管p2p金融投资平台爱
-                    </h1>
-                    <ul class="info-item">
-                        <li>
-                            <span class="info-item-title">APP ID</span>
-                            <span class="info-item-con">1121594093</span>
-                        </li>
-                        <li>
-                            <span class="info-item-title">关键词</span>
-                            <span class="info-item-con">23个</span>
-                        </li>
-                        <li>
-                            <span class="info-item-title">目前排名</span>
-                            <span class="info-item-con">TOP 3</span>
-                        </li>
-                        <li>
-                            <span class="info-item-title">开始执行时间</span>
-                            <span class="info-item-con">2017-01-01 09：00</span>
-                        </li>
-                        <li>
-                            <span class="info-item-title">金额</span>
-                            <span class="info-item-con">￥234895</span>
-                        </li>
-                    </ul>
-                </div>
-                <div class="button">
-                    <button type="button" class="btn btn-warning">上传IDFA</button>
-                    <a href="#" class="link">下载模板</a>
-                </div>
-            </div>
-        </div>
+    <div class="home">
+        <order-list></order-list>
     </div>
 </div>

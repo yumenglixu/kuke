@@ -22,7 +22,7 @@ angular.module('kukeApp', [
             controller:'OrderCtrl'
         })
         .state('info',{
-            url:'/order/:orderId/info',
+            url:'/order/info/:orderId',
             templateUrl:'app/orderInfo/orderInfo.html',
             controller:'OrderInfoCtrl'
         })
@@ -38,5 +38,39 @@ angular.module('kukeApp', [
         })
 }]).run(['$rootScope', '$modal', function ($rootScope, $modal) {
     // modal 效果编辑
-    
+    window.alert = function (msg,type) {
+        return swal({
+            title: msg,
+            type: type || "success",
+            confirmButtonText: "我知道了",
+            confirmButtonColor: (type == "success") ? "#1ab394": "#ed5565"
+        });
+    };
+
+    // 上传文件
+    window.uploadFile = function (id) {
+        return $modal.open({
+            templateUrl: 'app/dialog/modal/upload/upload.tpl.html',
+            controller: 'uploadItemCtrl',
+            resolve: {
+                id: function(){
+                    return id;
+                }
+            }
+        }).result;
+    };
+
+     // 上传文件
+    window.reBack = function (id) {
+        return $modal.open({
+            templateUrl: 'app/dialog/modal/reback/reback.tpl.html',
+            controller: 'rebackItemCtrl',
+            resolve: {
+                id: function(){
+                    return id;
+                }
+            }
+        }).result;
+    };
+
 }]);

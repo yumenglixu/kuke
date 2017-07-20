@@ -10,9 +10,15 @@
 angular.module('kukeApp')
 	.factory('FinanceApiFactory', ['kukeHttp', function (ybHttp) {
 		return {
-			// 获取对应的项目数据
+			// 获取财务操作记录
 			getFinanceList: function(data, async, callback){
-				kukeHttp('/kuke/mock/fina/list.json', data , 'GET', async, callback);
+				// 0 是财务记录,  1 是保证金记录
+				if (+data.type === 0) {
+					kukeHttp('/financeLog', data , 'GET', async, callback);
+				}
+				else {
+					kukeHttp('/insuranceLog', data , 'GET', async, callback);
+				}
 			}
 		};
 	}]);

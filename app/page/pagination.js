@@ -30,6 +30,7 @@ angular.module('kukeApp').directive('kkPagination', ['$http', function ($http) {
                     scope.conf.currentPage = item;
                 }
             };
+
             // pageList数组
             function getPagination () {
                 scope.conf.pagesLength = 5;
@@ -40,8 +41,7 @@ angular.module('kukeApp').directive('kkPagination', ['$http', function ($http) {
 
 
                 // 总页数
-                scope.conf.numberOfPages = Math.ceil(scope.conf.totalItems/scope.conf.itemsPerPage);
-
+                scope.conf.numberOfPages = scope.conf.numberOfPages || Math.ceil(scope.conf.totalItems/scope.conf.itemsPerPage);
                 // 当前的页数小于1
                 if(scope.conf.currentPage < 1) {
                     scope.conf.currentPage = 1;
@@ -95,7 +95,6 @@ angular.module('kukeApp').directive('kkPagination', ['$http', function ($http) {
                         scope.pageList.push(scope.conf.numberOfPages);
                     }
                 }
-
                 if (scope.conf.onChange) {
                     scope.conf.onChange();
                 }
@@ -114,18 +113,13 @@ angular.module('kukeApp').directive('kkPagination', ['$http', function ($http) {
                     scope.conf.currentPage += 1;
                 }
             };
-            scope.$watch('paginationConf', function(newValue) {
-                if (newValue) {
-                    console.log('1111');
-                };
-            }, true);
+
 
             scope.$watch(function () {
                 var newValue = scope.conf.currentPage + ' ' + scope.conf.totalItems + ' ';
                 // 如果直接watch perPage变化的时候，因为记住功能的原因，所以一开始可能调用两次。
                 return newValue;
             }, getPagination);
-
         }
     };
 }]);

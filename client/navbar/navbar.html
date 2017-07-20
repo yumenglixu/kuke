@@ -3,7 +3,7 @@
         <a class="navbar-brand" href="#"></a>
     </div>
     <ul class="nav-sidebar">
-        <li ng-repeat="server in servers" ng-class = "{active: (server.name == activeSer)}">
+        <li ng-repeat="server in servers" ng-class = "{active: (server.name == path)}">
             <a ng-href="#{{server.name}}" title="{{server.title}}">
                 <i class="icon {{server.icon}}"></i>
                 <span>{{server.title}}</span>
@@ -11,7 +11,7 @@
         </li>
     </ul>
     <ul class="nav-sidebar nav-protocol">
-        <li class="" ng-class = "{active: (activeSer == '/protocol')}">
+        <li class="" ng-class = "{active: (path == '/protocol')}">
             <a title="概述" href="#/protocol">
                 <i class="icon icon-protocol"></i>
                 <span>协议中心</span>

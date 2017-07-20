@@ -6,30 +6,19 @@ angular.module('kukeApp').directive('orderInfoPanle', ['OrderApiFactory', '$time
         templateUrl: 'client/orderInfoPanle/orderInfoPanle.html',
         link: function (scope, element, attrs) {
         	scope.orderIndex = 0;
-        	scope.orders = [];
-            scope.ranks = [];
-            // scope.type = 'normal';  // 机刷 或者 正常访问
-            scope.type = 'jishua';
-            scope.tabs = [{
-            	type: 'all',
-            	label: '全部订单'
-            }, {
-            	type: 'daijiedan',
-            	label: '待接单'
-            }, {
-            	type: 'daiyouhua',
-            	label: '待优化'
-            }, {
-            	type: 'jingxing',
-            	label: '进行中'
-            }, {
-            	type: 'done',
-            	label: '已完成'
-            }, {
-            	type: 'fail',
-            	label: '失败'
-            }];
+            scope.info = {};
+            scope.status = -1;
+            console.log(scope);
+            // 监听信息
+        	scope.$watch('orderDetailInfo', function (newValue, oldValue) {
+                if (newValue) {
+                    scope.info = newValue;
+                }
+            });
 
+            scope.$watch('userstatus', function (newValue, oldValue) {
+                scope.status = newValue;
+            });
 
             // 切换tab
             scope.changeTab = function (index) {
@@ -38,24 +27,6 @@ angular.module('kukeApp').directive('orderInfoPanle', ['OrderApiFactory', '$time
                 }
                 scope.orderIndex = index;
             }
-
-            // 获取表单
-            scope.orderList = function() {
-                var data = {};
-                OrderApiFactory.getOrderInfo(data, true, function(res){
-                    if (res.errno === 0) {
-	                    scope.orders = res.data.list;
-                        scope.ranks  = res.data.rank;
-	                }
-	                else {
-	                	scope.orders = [];
-                        scope.ranks  = [];
-	                }
-                    scope.$apply();
-                });
-            }
-            scope.orderList();
-            
         }
     }
 }]);

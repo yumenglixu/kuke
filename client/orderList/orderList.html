@@ -1,0 +1,78 @@
+<div class="row clearfix order-list" ng-if="orderLists.length">
+    <h3 class="title">您有未完成的订单，请及时处理！</h3>
+    
+    <div class="col-md-12" ng-repeat="(index, list) in orderLists">
+        <div class="order-list-item box-shadow">
+            <a class="img" ng-href="{{list.appInfo.url}}" target="_blank">
+                <img ng-src="{{list.appInfo.icon}}" alt="{{list.appInfo.title}}">
+            </a>
+            <div class="info">
+                <a class="text-1 info-title" ng-href="#/order/info/{{list.orderInfo.id}}" ui-sref-active="active">
+                    {{index + 1}}. {{list.appInfo.title}}
+                </a>
+                <ul class="info-item">
+                    <li>
+                        <span class="info-item-title">APP ID</span>
+                        <span class="info-item-con">{{list.orderInfo.trade_no}}</span>
+                    </li>
+                    <li>
+                        <span class="info-item-title">关键词</span>
+                        <span class="info-item-con">{{list.orderInfo.keyword_count}}个</span>
+                    </li>
+                    <li>
+                        <span class="info-item-title">目前排名</span>
+                        <span class="info-item-con">TOP {{list.orderInfo.target_rank}}</span>
+                    </li>
+                    <li>
+                        <span class="info-item-title">开始执行时间</span>
+                        <span class="info-item-con">{{list.orderInfo.optimize_datetime | timeFormatter}}</span>
+                    </li>
+                    <li ng-if="orderDetail">
+                        <span class="info-item-title">结束时间</span>
+                        <span class="info-item-con">{{list.orderInfo.finish_time | timeFormatter}}</span>
+                    </li>
+                    <li>
+                        <span class="info-item-title">金额</span>
+                        <span class="info-item-con">￥{{list.orderInfo.pay_money}}</span>
+                    </li>
+                </ul>
+            </div>
+            
+
+            <!--获取指定的状态订单（-10或不传：所有，1:付款提交后台，2:渠道接单，3:开始执行，4:成功上传IDFA，5:交易成功，6:交易关闭，7 or -1:交易失败）-->
+
+            <div class="button" ng-if="list.orderInfo.business_status == 1">
+            <button type="button" class="btn btn-primary" ng-click="orderStatusUpdate(index, list.orderInfo.id, 2)">确定接单</button>
+                <a  class="link" data-toggle="modal" data-target="#myModal" ng-click="orderStatusUpdate(index, list.orderInfo.id, 6)">无法接单？</a>
+            </div>
+
+            <div class="button" ng-if="list.orderInfo.business_status == 2">
+                <button type="button" class="btn btn-success" ng-click="orderStatusUpdate(index, list.orderInfo.id, 3)">开始执行</button>
+            </div>
+
+            <div class="button" ng-if="list.orderInfo.business_status == 3">
+                <button type="button" class="btn btn-warning" ng-click="orderStatusUpdate(index, list.orderInfo.id, 4)">上传IDFA</button>
+                <a href="#" class="link">下载模板</a>
+            </div>
+            <div class="button" ng-if="list.orderInfo.business_status == 4 || list.orderInfo.business_status == 5">
+                <label class="result success">交易成功</label>
+            </div>
+            <div class="button" ng-if="list.orderInfo.business_status == 6">
+                <label class="result">交易关闭</label>
+            </div>
+            <div class="button" ng-if="list.orderInfo.business_status == -1 || list.orderInfo.business_status == 7">
+                <label class="result fail">交易失败</label>
+                <span class="reback"">(退款 {{list.orderInfo.pay_money}}元)</span>
+            </div>
+        </div>
+    </div>
+</div>
+<kk-pagination conf="orderPaginationConf" ng-if="orderLists.length && !orderDetail"></kk-pagination>
+<div class="row" ng-if="orderLists.length === 0">
+    <div class="col-md-12">
+        <div class="empty">
+            <p class="img records records-17"></p>
+            <p class="empty-word">您没有未完成的订单哦！</p>
+        </div>
+    </div>
+</div>
